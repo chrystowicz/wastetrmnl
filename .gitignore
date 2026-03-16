@@ -1,0 +1,67 @@
+4:44 PM# Go .gitignore
+
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool
+*.out
+*.prof
+
+# Dependency directories
+vendor/
+
+# Go workspace file
+go.work
+go.work.sum
+
+# Build output
+bin/
+dist/
+build/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# IDE and editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Air live reload
+tmp/
+air.toml
+
+# GoLand
+*.iml
+
+# Delve debugger
+debug
+debug.test
+
+# Module download cache (usually not committed)
+# Uncomment if you want to ignore the module cache
+# $GOPATH/pkg/mod/
+
+# Generated files
+*.pb.go
+*.pb.gw.go
+mock_*.go
+
+# Log files
+*.log
+logs/
+
+options.json
