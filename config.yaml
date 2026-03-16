@@ -1,6 +1,6 @@
 name: "Wywoz smieci dla TRMNL"
 description: "Odswiezanie wywozu smieci dla TRMNL"
-version: "1.0.10"
+version: "1.0.11"
 slug: "smieci_trmnl"
 init: false
 arch:
@@ -22,3 +22,6 @@ schema:
 options:
   szpp: []
   szot: []
+  id_numeru: ""
+  id_ulicy: ""
+  trmnl_plugin_uuid: ""
