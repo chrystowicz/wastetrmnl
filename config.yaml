@@ -1,0 +1,24 @@
+name: "Wywoz smieci dla TRMNL"
+description: "Odswiezanie wywozu smieci dla TRMNL"
+version: "1.0.10"
+slug: "smieci_trmnl"
+init: false
+arch:
+  - aarch64
+  - amd64
+  - armhf
+  - armv7
+  - i386
+schema:
+  szop:
+    - date: str
+      hour: str
+  szot:
+    - date: str
+      hour: str
+  id_numeru: str
+  id_ulicy: str
+  trmnl_plugin_uuid: str
+options:
+  szpp: []
+  szot: []
