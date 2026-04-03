@@ -1,6 +1,6 @@
 name: "Wywoz smieci dla TRMNL"
 description: "Odswiezanie wywozu smieci dla TRMNL"
-version: "1.0.12"
+version: "1.0.13"
 slug: "smieci_trmnl"
 init: false
 arch:
