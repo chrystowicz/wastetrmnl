@@ -135,11 +135,20 @@ func firstEntry(entries []config.Entry, loc *time.Location) *Entry {
 	}
 
 	nearest := future[0]
-	for _, e := range future[1:] {
-		if e.Date < nearest.Date {
-			nearest = e
+	nearestTime, err := timeutil.ParseDate(nearest.Date, loc)
+	if err == nil {
+		for _, e := range future[1:] {
+			t, err := timeutil.ParseDate(e.Date, loc)
+			if err != nil {
+				continue
+			}
+			if t.Before(nearestTime) {
+				nearest = e
+				nearestTime = t
+			}
 		}
 	}
+
 	return &Entry{
 		Hour:         nearest.Hour,
 		DateReadable: timeutil.RelativeDays(nearest.Date, loc),
