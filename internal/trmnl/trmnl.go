@@ -119,7 +119,7 @@ func buildPayload(dashboard schedule.DashboardResponse, opts *config.Options, lo
 // firstEntry picks the nearest future entry from a list of config.Entry values.
 func firstEntry(entries []config.Entry, loc *time.Location) *Entry {
 	if len(entries) == 0 {
-		return &Entry{DateReadable: "?"}
+		return &Entry{DateReadable: "brak danych"}
 	}
 
 	now := time.Now().In(loc)
@@ -137,7 +137,7 @@ func firstEntry(entries []config.Entry, loc *time.Location) *Entry {
 	}
 
 	if len(future) == 0 {
-		return &Entry{DateReadable: "?"}
+		return &Entry{DateReadable: "brak danych"}
 	}
 
 	nearest := future[0]
