@@ -87,6 +87,12 @@ func buildPayload(dashboard schedule.DashboardResponse, opts *config.Options, lo
 				DateReadable: timeutil.RelativeDays(dates[0], loc),
 				Date:         dates[0],
 			})
+		} else {
+			schedules = append(schedules, scheduleEntry{
+				Type:         typ,
+				DateReadable: "?",
+				Date:         "?",
+			})
 		}
 	}
 	sort.Slice(schedules, func(i, j int) bool {
@@ -113,7 +119,7 @@ func buildPayload(dashboard schedule.DashboardResponse, opts *config.Options, lo
 // firstEntry picks the nearest future entry from a list of config.Entry values.
 func firstEntry(entries []config.Entry, loc *time.Location) *Entry {
 	if len(entries) == 0 {
-		return &Entry{DateReadable: "brak danych"}
+		return &Entry{DateReadable: "?"}
 	}
 
 	now := time.Now().In(loc)
@@ -131,7 +137,7 @@ func firstEntry(entries []config.Entry, loc *time.Location) *Entry {
 	}
 
 	if len(future) == 0 {
-		return &Entry{DateReadable: "brak danych"}
+		return &Entry{DateReadable: "?"}
 	}
 
 	nearest := future[0]
