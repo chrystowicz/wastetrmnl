@@ -4,7 +4,9 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
+	"net/http/httputil"
 	"sort"
 	"time"
 
@@ -50,7 +52,7 @@ func Send(dashboard schedule.DashboardResponse, opts *config.Options, loc *time.
 	}
 
 	endpoint := endpointBase + opts.TrmnlPluginUUID
-	req, err := http.NewRequest("POST", endpoint, bytes.NewReader(body))
+	req, err := http.NewRequest(http.MethodPost, endpoint, bytes.NewReader(body))
 	if err != nil {
 		return fmt.Errorf("build request: %w", err)
 	}
@@ -61,6 +63,12 @@ func Send(dashboard schedule.DashboardResponse, opts *config.Options, loc *time.
 		return fmt.Errorf("http request: %w", err)
 	}
 	defer resp.Body.Close()
+
+	dump, err := httputil.DumpResponse(resp, true)
+	if err != nil {
+		return fmt.Errorf("dump response: %w", err)
+	}
+	log.Printf("%s", dump)
 
 	if resp.StatusCode < 200 || resp.StatusCode >= 300 {
 		return fmt.Errorf("non-2xx status: %d", resp.StatusCode)
